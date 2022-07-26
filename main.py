@@ -3,6 +3,7 @@ import json
 import os
 
 from RPLCD.i2c import CharLCD
+import RPi.GPIO as GPIO
 
 API_KEY = os.environ.get("WEATHER_API_KEY")
 LOCATIONS_FILE = "locations.json"
@@ -109,3 +110,9 @@ if __name__ == "__main__":
     weather = generate_display_message(locations[0])
     lcd.clear()
     lcd.write_string(weather)
+
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    while True:
+        if GPIO.input(10) == GPIO.HIGH:
+            print("Button was pushed!")
