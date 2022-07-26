@@ -101,7 +101,7 @@ if __name__ == "__main__":
     for location in locations:
         get_weather(location)
 
-    i2c = busio.I2C(5, 3)
+    i2c = busio.I2C(3, 2)
     lcd = character_lcd.Character_LCD_I2C(i2c, LCD_COLUMNS, LCD_ROWS)
     lcd.backlight = True
     lcd.message = generate_display_message(locations[0])
