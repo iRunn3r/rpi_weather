@@ -114,5 +114,5 @@ if __name__ == "__main__":
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     while True:
-        if GPIO.input(10) == GPIO.HIGH:
+        if GPIO.input(17) == GPIO.HIGH:
             print("Button was pushed!")
