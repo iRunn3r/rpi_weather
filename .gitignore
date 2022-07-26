@@ -3,3 +3,4 @@ forecasts/
 
 # IDE
 .idea/*
+venv/*
