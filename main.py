@@ -103,5 +103,5 @@ if __name__ == "__main__":
 
     i2c = board.I2C()
     lcd = character_lcd.Character_LCD_I2C(i2c, LCD_COLUMNS, LCD_ROWS, address=0x27)
-    lcd.backlight = True
-    lcd.message = generate_display_message(locations[0])
+    # lcd.backlight = True
+    lcd.message = "Hello world" # generate_display_message(locations[0])
