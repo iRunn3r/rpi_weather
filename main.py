@@ -2,6 +2,8 @@ import requests
 import json
 import os
 
+from RPLCD.i2c import CharLCD
+
 API_KEY = os.environ.get("WEATHER_API_KEY")
 LOCATIONS_FILE = "locations.json"
 FORECAST_LOCATION = "forecasts"
@@ -97,3 +99,11 @@ if __name__ == "__main__":
     locations = load_locations()
     for location in locations:
         get_weather(location)
+
+    lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1,
+                  cols=20, rows=4, dotsize=8,
+                  charmap='A02',
+                  auto_linebreaks=True,
+                  backlight_enabled=True)
+
+    lcd.write_string('Hello world')
