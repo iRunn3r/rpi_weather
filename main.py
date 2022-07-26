@@ -1,10 +1,15 @@
 import requests
 import json
 import os
+import time
+import board
+import adafruit_character_lcd.character_lcd_i2c as character_lcd
 
 API_KEY = os.environ.get("WEATHER_API_KEY")
 LOCATIONS_FILE = "locations.json"
 FORECAST_LOCATION = "forecasts"
+LCD_COLUMNS = 20
+LCD_ROWS = 4
 
 
 def clear_reports():
@@ -87,8 +92,7 @@ def generate_display_message(loc):
     condition = forecast["current"]["condition"]["text"]
     message += condition
 
-    print(message)
-    print()
+    return message
 
 
 if __name__ == "__main__":
@@ -96,4 +100,8 @@ if __name__ == "__main__":
     locations = load_locations()
     for location in locations:
         get_weather(location)
-        generate_display_message(location)
+
+    i2c = board.I2C()
+    lcd = character_lcd.Character_LCD_I2C(i2c, LCD_COLUMNS, LCD_ROWS)
+    lcd.backlight = True
+    lcd.message = generate_display_message(locations[0])
