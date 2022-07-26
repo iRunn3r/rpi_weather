@@ -103,7 +103,8 @@ if __name__ == "__main__":
     lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1,
                   cols=20, rows=4, dotsize=8,
                   charmap='A02',
-                  auto_linebreaks=True,
+                  auto_linebreaks=False,
                   backlight_enabled=True)
 
-    lcd.write_string('Hello world')
+    weather = generate_display_message(locations[0])
+    lcd.write_string(weather)
