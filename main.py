@@ -74,18 +74,18 @@ def generate_display_message(loc):
         place = place[0:max_place_length - 1]
 
     spaces = " " * (20 - len(localtime) - len(place))
-    message = f"{place}{spaces}{localtime}\n"
+    message = f"{place}{spaces}{localtime}\r\n"
 
     # Second line: temperature (5 characters) + UV (5 characters) + humidity (7 characters)
     temperature = round(forecast["current"]["temp_c"])
     uv = round(forecast["current"]["uv"])
     humidity = forecast["current"]["humidity"]
-    message += f"T={temperature}C UVI={uv} RH={humidity}%\n"
+    message += f"T={temperature}C UVI={uv} RH={humidity}%\r\n"
 
     # Third line: wind (12 characters)
     wind = round(forecast["current"]["wind_kph"])
     direction = forecast["current"]["wind_dir"]
-    message += f"W={wind}kph({direction})\n"
+    message += f"W={wind}kph({direction})\r\n"
 
     # Fourth line: condition (variable length)
     condition = forecast["current"]["condition"]["text"]
@@ -107,6 +107,5 @@ if __name__ == "__main__":
                   backlight_enabled=True)
 
     weather = generate_display_message(locations[0])
-    print(weather)
     lcd.clear()
-    lcd.write_string("test0\ntest1\ntest2\test3")
+    lcd.write_string(weather)
