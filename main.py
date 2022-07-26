@@ -2,7 +2,7 @@ import requests
 import json
 import os
 import time
-import board
+import busio
 import adafruit_character_lcd.character_lcd_i2c as character_lcd
 
 API_KEY = os.environ.get("WEATHER_API_KEY")
@@ -101,7 +101,7 @@ if __name__ == "__main__":
     for location in locations:
         get_weather(location)
 
-    i2c = board.I2C()
+    i2c = busio.I2C(5, 3)
     lcd = character_lcd.Character_LCD_I2C(i2c, LCD_COLUMNS, LCD_ROWS)
     lcd.backlight = True
     lcd.message = generate_display_message(locations[0])
