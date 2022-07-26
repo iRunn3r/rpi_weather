@@ -109,4 +109,4 @@ if __name__ == "__main__":
     weather = generate_display_message(locations[0])
     print(weather)
     lcd.clear()
-    lcd.write_string(weather)
+    lcd.write_string("test0\ntest1\ntest2\test3")
