@@ -81,7 +81,7 @@ def generate_display_message(loc):
     # Third line: wind (12 characters)
     wind = round(forecast["current"]["wind_kph"])
     direction = forecast["current"]["wind_dir"]
-    message += f"{wind}kph({direction})\n"
+    message += f"W={wind}kph({direction})\n"
 
     # Fourth line: condition (variable length)
     condition = forecast["current"]["condition"]["text"]
